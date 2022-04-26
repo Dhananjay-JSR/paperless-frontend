@@ -1,19 +1,16 @@
 import React from 'react'
-import Footer from './component/Footer'
-import Container from './component/Container'
+import Home from './component/Home'
+import { BrowserRouter,Switch, Routes, Route } from "react-router-dom";
+import Boilerplate from './component/Boilerplate';
 
 function App() {
   return (
-   <>
-   <div className='bg-[#000000] h-screen'>
-  
-    <Container>
-      
-    </Container>
-    <Footer></Footer>
-   </div>
-   </>
-
+    <>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path=":id" element={<Boilerplate/>} />
+    </Routes>
+    </>
   )
 }
 

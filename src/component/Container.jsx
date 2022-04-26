@@ -6,13 +6,22 @@ import querystring  from 'query-string'
 function Container() {
     const [textData, setTextData] = useState("")
     const [password,setPassword] = useState(0)
-
+    const [received, setreceived] = useState('block')
+    const [received2, setreceived2] = useState('none')
+    const [hashedLink, sethashedLink] = useState("")
+   
+    
+    
     const content = { message: textData,password:password };
 
     function SaveData(){
+
         axios.post('https://paperless-backend-mongo.up.railway.app/storage', content)
           .then(function (response) {
-            console.log(response.data.HashedLink);
+            setreceived('none')
+            setreceived2('block')
+            sethashedLink(response.data.HashedLink)
+        
           })
           .catch(function (error) {
             console.log(error);
@@ -24,6 +33,8 @@ function Container() {
 
     const [visible, setVisible] = React.useState(false);
     const closeHandler = () => {
+        setreceived('block')
+        setreceived2('none')
         setVisible(false);
         console.log("closed");
       };
@@ -77,8 +88,16 @@ function Container() {
           </Text>
         </Modal.Header>
         <Modal.Body>
-    
+        <Text css={{
+            display: received2  
+        }}>
+       {hashedLink}
+        </Text>
+        
           <Input
+          css={{
+              display: received
+          }}
             clearable
             bordered
             fullWidth
