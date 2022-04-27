@@ -12,7 +12,7 @@ function Boilerplate() {
         setVisible(false);
         console.log("closed");
       };
-
+      
       
     const {id} = useParams();
     console.log(id)
