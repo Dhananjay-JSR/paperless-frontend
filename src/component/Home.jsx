@@ -10,15 +10,77 @@ import { Content1 } from "./style/Content1";
 import { Content2 } from "./style/Content2";
 import { Content_1_HeadLine as HeadLine } from "./style/Content_1_HeadLine";
 import { InputTextBox } from "./style/InputTextBox";
+import { styled } from "@stitches/react";
 function Home() {
   const [DarkModeValue,SetDarkModeValue]= useContext(DarkMode)
   globalStyles();
   function ThemeChanger() {
     SetDarkModeValue(!DarkModeValue)
   }
+//MODAL
+  const Modal = styled('div',{
+    position: 'fixed',
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 7,
+     backdropFilter: 'blur(15px)',
+    variants: {
+      "display":{
+        "hide":{
+          display: 'none'
+        },
+        "show":{
+          display: 'flex'
+        }
+      },
+    }
+  })
+
+const ModalWindow=styled('div',{
+  backgroundColor: 'Yellow',
+  height: '20rem',
+  width: '35rem',
+ 
+  borderRadius: '25px',
+  variants:{
+    "darkMode":{
+      false: {
+
+        backgroundColor: '#151718',
+        border: '2px solid white',
+        color: 'White'
+      },
+      true:{
+        backgroundColor: '#d2d2d2',
+        color: 'Black',
+        border: '2px solid black'
+
+      }
+  }
+  }
+  
+
+
+})
+
+  //MODAL
   return (
     <>
-     
+    <Modal display={"show"}>
+        <ModalWindow darkMode={DarkModeValue} >
+        <TextContainer css={{
+          textAlign: 'center',
+          marginTop: '10px',
+          fontSize: 'xx-large',
+          fontWeight: 'bold',
+          fontFamily: 'ui-monospace'
+        }}>
+          ENTER YOUR PASSWORD
+        </TextContainer>
+        </ModalWindow>
+    </Modal>
       <Header darkMode={DarkModeValue}>
         <TextContainer>
           PaperLess
@@ -41,7 +103,7 @@ function Home() {
               INTRODUCING
             </HeadLine>
             <HeadLine 
-            darkMode={DarkModeValue}
+            
             css={{
               fontSize: '100px',
               background: 'linear-gradient(90deg, #FEAC5E 0%, #C779D0 50%, #4BC0C8 100%)',
@@ -64,7 +126,7 @@ function Home() {
             </Content1>
             <Content2 darkMode={DarkModeValue}>
             <HeadLine
-            placeholder="INSERT YOUR NOTE HERE"
+            
             darkMode={DarkModeValue}
             css={{
               fontSize: "60px",
@@ -73,12 +135,12 @@ function Home() {
               width: 'max-content',
               marginLeft: 'auto',
               marginRight: 'auto',
-              marginBottom: '70px'
-
+              marginBottom: '70px',
+              animation: 'none'
             }}>
               Ready to Experience the Future ?
             </HeadLine>
-            <InputTextBox darkMode={DarkModeValue}>
+            <InputTextBox placeholder="INSERT YOUR NOTE HERE" darkMode={DarkModeValue}>
             </InputTextBox>
             <Button
             
