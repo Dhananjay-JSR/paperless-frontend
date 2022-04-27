@@ -17,7 +17,7 @@ import { styled } from "@stitches/react";
         },
         variants: {
             "darkMode":{
-                1: {
+                true: {
                     backgroundColor: 'white',
                     color: 'black',
                     border: '2px solid black',
@@ -29,7 +29,7 @@ import { styled } from "@stitches/react";
                       },
 
                 },
-                0:{
+                false:{
                     backgroundColor: 'Black',
                     color: 'white',
                     border: '2px solid black',
