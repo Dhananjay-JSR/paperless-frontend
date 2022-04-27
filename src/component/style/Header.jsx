@@ -9,11 +9,11 @@ export const Header = styled('div',{
     alignItems: 'center',
     'variants':{
         "darkMode":{
-            0: {
+            false: {
                 backgroundColor: 'white',
                 color: 'Black'
             },
-            1:{
+            true:{
                 backgroundColor: 'Black',
                 color: 'White'
 
