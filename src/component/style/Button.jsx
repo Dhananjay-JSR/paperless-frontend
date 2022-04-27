@@ -27,6 +27,7 @@ import { styled } from "@stitches/react";
                         border: '2px solid white',
                         
                       },
+                    
 
                 },
                 false:{

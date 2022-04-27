@@ -12,7 +12,6 @@ import { Content_1_HeadLine as HeadLine } from "./style/Content_1_HeadLine";
 import { InputTextBox } from "./style/InputTextBox";
 function Home() {
   const [DarkModeValue,SetDarkModeValue]= useContext(DarkMode)
-  console.log(DarkModeValue)
   globalStyles();
   function ThemeChanger() {
     SetDarkModeValue(!DarkModeValue)
@@ -38,10 +37,12 @@ function Home() {
       <Container>
             <Content1 darkMode={DarkModeValue}>
 
-            <HeadLine >
+            <HeadLine darkMode={DarkModeValue}>
               INTRODUCING
             </HeadLine>
-            <HeadLine css={{
+            <HeadLine 
+            darkMode={DarkModeValue}
+            css={{
               fontSize: '100px',
               background: 'linear-gradient(90deg, #FEAC5E 0%, #C779D0 50%, #4BC0C8 100%)',
               '-webkit-background-clip': 'text',
@@ -50,21 +51,21 @@ function Home() {
               animationTimingFunction: 'ease-in-out'
             }}>
             PaperLess
-            </HeadLine>
-            <HeadLine>
+            </HeadLine >
+            <HeadLine darkMode={DarkModeValue}>
             A MODERN PASTEBIN
             </HeadLine>
-            <HeadLine>
+            <HeadLine darkMode={DarkModeValue}>
             PRIMARILY FOCUS ON 
             </HeadLine>
-            <HeadLine>
-            SECURITY 
+            <HeadLine darkMode={DarkModeValue}>
+            SECURITY
             </HeadLine>
             </Content1>
             <Content2 darkMode={DarkModeValue}>
-            <TextContainer
+            <HeadLine
             placeholder="INSERT YOUR NOTE HERE"
-            
+            darkMode={DarkModeValue}
             css={{
               fontSize: "60px",
               fontWeight: 'bold',
@@ -76,7 +77,7 @@ function Home() {
 
             }}>
               Ready to Experience the Future ?
-            </TextContainer>
+            </HeadLine>
             <InputTextBox darkMode={DarkModeValue}>
             </InputTextBox>
             <Button

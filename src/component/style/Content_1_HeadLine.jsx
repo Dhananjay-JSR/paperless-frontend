@@ -11,5 +11,21 @@ const floating  = keyframes({
     fontSize: '50px',
     fontFamily: 'sans-serif',
     fontWeight: 'bold',
-    animation: `${floating} 3s infinite`
+    animation: `${floating} 3s infinite`,
+    variants: {
+      "darkMode":{
+          true: {
+            '&::selection':{
+              color: 'white',
+              background: 'black',
+            }
+          },
+          false:{
+            '&::selection':{
+              color: 'black',
+              background: 'white',
+            }
+          }
+      }
+  },
 })
