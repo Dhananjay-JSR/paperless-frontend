@@ -11,6 +11,9 @@ import { styled } from "@stitches/react";
         transitionDuration: '0.1s',
         paddingRight: '15px',
         paddingLeft: '15px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
         margin: '2px',
         '&:active':{
             transform: 'scale(1.5)'

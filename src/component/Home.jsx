@@ -1,4 +1,4 @@
-import React, { useContext,useState } from "react";
+import React, { useContext,useRef,useState } from "react";
 import { globalStyles } from "./style/globalReset";
 import { Button } from "./style/Button";
 import { Header } from "./style/Header";
@@ -11,20 +11,37 @@ import { Content2 } from "./style/Content2";
 import { Content_1_HeadLine as HeadLine } from "./style/Content_1_HeadLine";
 import { InputTextBox } from "./style/InputTextBox";
 import {  keyframes, styled } from "@stitches/react";
+import { Loader } from "./style/loader";
+import axios from "axios";
 function Home() {
 
-
+  const passInput = useRef()
   const [DarkModeValue,SetDarkModeValue]= useContext(DarkMode)
   const [open, setopen] = useState(false)
+  const [msgBox, setmsgBox] = useState('')
+  // let request_sent = false;
+ const [request_sent, setrequest_sent] = useState(false)
   globalStyles();
   function ThemeChanger() {
     SetDarkModeValue(!DarkModeValue)
   }
 
-
-function onsubmit(){
+  const [hashedLink, sethashedLink] = useState("")
+function submitData(){
+  console.log(passInput.current.value)
+  console.log(msgBox)
   navigator.clipboard.writeText("Hello")
-  setopen(prev=>!prev)
+  let content = {
+    "message": msgBox,
+    "password": +passInput.current.value
+}
+  axios.post('https://paperless-backend-mongo.up.railway.app/storage', content)
+  .then(function (response) {
+    console.log(response)
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 }
 //MODAL
 const revealModal = keyframes({
@@ -72,7 +89,6 @@ const ModalWindow=styled('div',{
         backgroundColor: '#f5f5f5',
         color: 'Black',
         border: '2px solid black'
-
       }
   }
   }
@@ -101,22 +117,27 @@ const ModalWindow=styled('div',{
             overflowY: 'hidden',
             marginBottom: '100px'
          }
-        } placeholder="ENTER PASSWORD TO ENCRYPT IT" 
-        darkMode={DarkModeValue}
-        >
+        } 
+
+        placeholder="ENTER PASSWORD TO ENCRYPT IT" ref={passInput} darkMode={DarkModeValue}>
             </InputTextBox>
         <Button
         darkMode={DarkModeValue}
+        onClick={()=>{if (passInput.current.value===''){window.alert("Enter Valid password")}else {submitData()}}}
          css={{
           position: 'absolute',
           bottom: '20px',
           right: '180px'
         }}>
-          Submit
+          {request_sent? `<Loader/>`:`` }
+          
+          <div>
+          {request_sent? ``:`Submit` }
+          </div>
         </Button>
         <Button
         darkMode={DarkModeValue}
-        onClick={onsubmit}
+        onClick={()=>{setopen(prev=>!prev)}}
         css={{
           position: 'absolute',
           bottom: '20px',
@@ -185,10 +206,10 @@ const ModalWindow=styled('div',{
             }}>
               Ready to Experience the Future ?
             </HeadLine>
-            <InputTextBox placeholder="INSERT YOUR NOTE HERE" darkMode={DarkModeValue}>
+            <InputTextBox placeholder="INSERT YOUR NOTE HERE" darkMode={DarkModeValue} value={msgBox} onChange={(e)=>{setmsgBox(e.target.value)}}>
             </InputTextBox>
             <Button
-            onClick={onsubmit}
+            onClick={()=>{ if (msgBox===''){window.alert("Enter Valid Message")} else {setopen(prev=>!prev)}}}
             css={{
             width: 'fit-content',
             marginLeft: 'auto',
