@@ -26,7 +26,7 @@ export const InputTextBox = styled('textarea',{
                 border: '5px solid white',
                 color: 'White'
             }
-        }
+        },
     },
     
 })

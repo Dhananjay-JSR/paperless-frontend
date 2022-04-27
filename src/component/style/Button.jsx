@@ -24,7 +24,7 @@ import { styled } from "@stitches/react";
                     '&:hover': {
                         backgroundColor: 'black',
                         color: 'white',
-                        border: '2px solid white',
+                        border: '2px solid black',
                         
                       },
                     

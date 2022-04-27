@@ -10,7 +10,7 @@ import { Content1 } from "./style/Content1";
 import { Content2 } from "./style/Content2";
 import { Content_1_HeadLine as HeadLine } from "./style/Content_1_HeadLine";
 import { InputTextBox } from "./style/InputTextBox";
-import {  styled } from "@stitches/react";
+import {  keyframes, styled } from "@stitches/react";
 function Home() {
 
 
@@ -27,6 +27,10 @@ function onsubmit(){
   setopen(prev=>!prev)
 }
 //MODAL
+const revealModal = keyframes({
+  "0%" : {opacity: '0%'},
+  "100":{opacity:'100%'}
+})
   const Modal = styled('div',{
     position: 'fixed',
     width: '100%',
@@ -35,6 +39,7 @@ function onsubmit(){
     alignItems: 'center',
     zIndex: 7,
      backdropFilter: 'blur(15px)',
+    animation: `${revealModal} 0.2s 1 `,
     variants: {
       "display":{
         false:{
@@ -52,7 +57,11 @@ const ModalWindow=styled('div',{
   height: '20rem',
   width: '35rem',
   borderRadius: '25px',
-  variants:{
+  position: 'relative',
+  display: 'grid',
+  justifyContent: 'center',
+  alignItems: 'center',
+    variants:{
     "darkMode":{
       false: {
         backgroundColor: '#151718',
@@ -60,7 +69,7 @@ const ModalWindow=styled('div',{
         color: 'White'
       },
       true:{
-        backgroundColor: '#d2d2d2',
+        backgroundColor: '#f5f5f5',
         color: 'Black',
         border: '2px solid black'
 
@@ -80,10 +89,41 @@ const ModalWindow=styled('div',{
           marginTop: '10px',
           fontSize: 'xx-large',
           fontWeight: 'bold',
-          fontFamily: 'ui-monospace'
+          fontFamily: 'sans-serif',
         }}>
           ENTER YOUR PASSWORD
+
         </TextContainer>
+        <InputTextBox css={
+          {
+            width:'400px',
+            height: '20px',
+            overflowY: 'hidden',
+            marginBottom: '100px'
+         }
+        } placeholder="ENTER PASSWORD TO ENCRYPT IT" 
+        darkMode={DarkModeValue}
+        >
+            </InputTextBox>
+        <Button
+        darkMode={DarkModeValue}
+         css={{
+          position: 'absolute',
+          bottom: '20px',
+          right: '180px'
+        }}>
+          Submit
+        </Button>
+        <Button
+        darkMode={DarkModeValue}
+        onClick={onsubmit}
+        css={{
+          position: 'absolute',
+          bottom: '20px',
+          right: '40px'
+        }}>
+          Cancel
+        </Button>
         </ModalWindow>
     </Modal>
       <Header darkMode={DarkModeValue}>
