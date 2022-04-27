@@ -1,23 +1,19 @@
 import { styled } from "@stitches/react";
-
-export const Header = styled('div',{
-    height: '5rem',
-    fontSize: 'xx-large',
-    fontWeight: 'bold',
+export const Content1 =  styled('div',{
+    height: '100%',
+    width: '40%',
     display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
     transition: 'all',
-    width: '100vw',
-    border: '1px solid black',
     transitionDuration: '0.3s',
-    'variants':{
+    variants: {
         "darkMode":{
-            false: {
+            true: {
                 backgroundColor: 'white',
                 color: 'Black'
             },
-            true:{
+            false:{
                 backgroundColor: 'Black',
                 color: 'White'
 

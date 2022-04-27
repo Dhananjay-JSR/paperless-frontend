@@ -1,6 +1,6 @@
 import { styled } from "@stitches/react";
 
-export const Header = styled('div',{
+export const Footer = styled('div',{
     height: '5rem',
     fontSize: 'xx-large',
     fontWeight: 'bold',
@@ -8,8 +8,11 @@ export const Header = styled('div',{
     justifyContent: 'center',
     alignItems: 'center',
     transition: 'all',
+    position: 'fixed',
+    bottom: '0',
     width: '100vw',
-    border: '1px solid black',
+    borderTop: '1px solid black',
+    boxSizing: 'border-box',
     transitionDuration: '0.3s',
     'variants':{
         "darkMode":{
