@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext,useState } from "react";
 import { globalStyles } from "./style/globalReset";
 import { Button } from "./style/Button";
 import { Header } from "./style/Header";
@@ -10,13 +10,23 @@ import { Content1 } from "./style/Content1";
 import { Content2 } from "./style/Content2";
 import { Content_1_HeadLine as HeadLine } from "./style/Content_1_HeadLine";
 import { InputTextBox } from "./style/InputTextBox";
-import { styled } from "@stitches/react";
+import { keyframes, styled } from "@stitches/react";
 function Home() {
+
+
   const [DarkModeValue,SetDarkModeValue]= useContext(DarkMode)
+  const [open, setopen] = useState(false)
   globalStyles();
+
+
   function ThemeChanger() {
     SetDarkModeValue(!DarkModeValue)
   }
+
+
+function onsubmit(){
+  setopen(prev=>!prev)
+}
 //MODAL
   const Modal = styled('div',{
     position: 'fixed',
@@ -28,10 +38,10 @@ function Home() {
      backdropFilter: 'blur(15px)',
     variants: {
       "display":{
-        "hide":{
+        false:{
           display: 'none'
         },
-        "show":{
+        true:{
           display: 'flex'
         }
       },
@@ -42,7 +52,6 @@ const ModalWindow=styled('div',{
   backgroundColor: 'Yellow',
   height: '20rem',
   width: '35rem',
- 
   borderRadius: '25px',
   variants:{
     "darkMode":{
@@ -68,7 +77,7 @@ const ModalWindow=styled('div',{
   //MODAL
   return (
     <>
-    <Modal display={"show"}>
+    <Modal display={open}>
         <ModalWindow darkMode={DarkModeValue} >
         <TextContainer css={{
           textAlign: 'center',
@@ -143,7 +152,7 @@ const ModalWindow=styled('div',{
             <InputTextBox placeholder="INSERT YOUR NOTE HERE" darkMode={DarkModeValue}>
             </InputTextBox>
             <Button
-            
+            onClick={onsubmit}
             css={{
             width: 'fit-content',
             marginLeft: 'auto',
