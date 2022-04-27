@@ -17,12 +17,12 @@ export const Footer = styled('div',{
     'variants':{
         "darkMode":{
             false: {
-                backgroundColor: 'white',
-                color: 'Black'
+                backgroundColor: '#151718',
+                color: 'White'
             },
             true:{
-                backgroundColor: 'Black',
-                color: 'White'
+                backgroundColor: '#d2d2d2',
+                color: 'Black'
 
             }
         }

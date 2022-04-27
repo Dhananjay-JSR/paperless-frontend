@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { globalStyles } from "./style/globalReset";
 import { Button } from "./style/Button";
 import { Header } from "./style/Header";
@@ -46,6 +46,8 @@ function Home() {
               background: 'linear-gradient(90deg, #FEAC5E 0%, #C779D0 50%, #4BC0C8 100%)',
               '-webkit-background-clip': 'text',
               '-webkit-text-fill-color': 'transparent',
+              animationDelay: '2s',
+              animationTimingFunction: 'ease-in-out'
             }}>
             PaperLess
             </HeadLine>
@@ -61,15 +63,34 @@ function Home() {
             </Content1>
             <Content2 darkMode={DarkModeValue}>
             <TextContainer
+            placeholder="INSERT YOUR NOTE HERE"
+            
             css={{
               fontSize: "60px",
               fontWeight: 'bold',
-              margin: "70px"
+              marginTop: "70px",
+              width: 'max-content',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              marginBottom: '70px'
+
             }}>
               Ready to Experience the Future ?
             </TextContainer>
-            <InputTextBox>
+            <InputTextBox darkMode={DarkModeValue}>
             </InputTextBox>
+            <Button
+            
+            css={{
+            width: 'fit-content',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            marginTop: '30px'
+            }}
+            darkMode={DarkModeValue}
+            >
+              Let's Go !
+            </Button>
             </Content2>
       </Container>
       <Footer darkMode={DarkModeValue}>

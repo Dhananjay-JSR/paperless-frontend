@@ -18,8 +18,8 @@ import { styled } from "@stitches/react";
         variants: {
             "darkMode":{
                 true: {
-                    backgroundColor: 'white',
-                    color: 'black',
+                    backgroundColor: 'BLACK',
+                    color: 'white',
                     border: '2px solid black',
                     '&:hover': {
                         backgroundColor: 'black',
@@ -30,8 +30,8 @@ import { styled } from "@stitches/react";
 
                 },
                 false:{
-                    backgroundColor: 'Black',
-                    color: 'white',
+                    backgroundColor: 'White',
+                    color: 'BLACK',
                     border: '2px solid black',
                     '&:hover': {
                         backgroundColor: 'white',
