@@ -10,21 +10,20 @@ import { Content1 } from "./style/Content1";
 import { Content2 } from "./style/Content2";
 import { Content_1_HeadLine as HeadLine } from "./style/Content_1_HeadLine";
 import { InputTextBox } from "./style/InputTextBox";
-import { keyframes, styled } from "@stitches/react";
+import {  styled } from "@stitches/react";
 function Home() {
 
 
   const [DarkModeValue,SetDarkModeValue]= useContext(DarkMode)
   const [open, setopen] = useState(false)
   globalStyles();
-
-
   function ThemeChanger() {
     SetDarkModeValue(!DarkModeValue)
   }
 
 
 function onsubmit(){
+  navigator.clipboard.writeText("Hello")
   setopen(prev=>!prev)
 }
 //MODAL
@@ -56,7 +55,6 @@ const ModalWindow=styled('div',{
   variants:{
     "darkMode":{
       false: {
-
         backgroundColor: '#151718',
         border: '2px solid white',
         color: 'White'
@@ -69,8 +67,6 @@ const ModalWindow=styled('div',{
       }
   }
   }
-  
-
 
 })
 
