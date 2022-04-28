@@ -47,14 +47,14 @@ function Boilerplate() {
       method: "POST",
       body: JSON.stringify(_data),
     })
-      .then((data) => console.log("Data Recieved" + JSON.parse(data)))
+      .then((data) => console.log("Data Recieved" + JSON.stringify(data)))
       .catch((err) => {
         console.log(err)
-        if (err.response.status === 403) {
-          window.alert("Token Expired Please Refresh Page");
-        } else if (err.response.status === 410) {
-          window.alert("PassWord Didn't Match");
-        }
+        // if (err.response.status === 403) {
+        //   window.alert("Token Expired Please Refresh Page");
+        // } else if (err.response.status === 410) {
+        //   window.alert("PassWord Didn't Match");
+        // }
       });
   }
 
