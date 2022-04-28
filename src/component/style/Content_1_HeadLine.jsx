@@ -2,13 +2,13 @@ import { styled,keyframes } from "@stitches/react";
 
 
 const floating  = keyframes({
-    '0%':{transform: 'translate(0, 0px)'},
-    '50%':{transform: 'translate(0, 15px)'},
-    '100%':{transform: 'translate(0, -0px)'},
+    '0%':{transform: 'translate(0, 0vh)'},
+    '50%':{transform: 'translate(0, 1.5vh)'},
+    '100%':{transform: 'translate(0, 0vh)'},
   });
   export const Content_1_HeadLine = styled('div',{
-    margin: '20px',
-    fontSize: '50px',
+    margin: '2vh',
+    fontSize: '5vh',
     fontFamily: 'sans-serif',
     fontWeight: 'bold',
     animation: `${floating} 3s infinite`,

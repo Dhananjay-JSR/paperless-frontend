@@ -4,17 +4,16 @@ import { styled } from "@stitches/react";
    export const Button = styled('button',{
 
         borderRadius: '9999px',
-        fontSize: '13px',
         border: '0',
-        fontSize: 'x-large',
+        fontSize: '2vh',
         transition: 'all',
         transitionDuration: '0.1s',
-        paddingRight: '15px',
-        paddingLeft: '15px',
+        paddingRight: '1.5vh',
+        paddingLeft: '1.5vh',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        margin: '2px',
+        margin: '1vh',
         '&:active':{
             transform: 'scale(1.5)'
         },
@@ -23,11 +22,11 @@ import { styled } from "@stitches/react";
                 true: {
                     backgroundColor: 'BLACK',
                     color: 'white',
-                    border: '2px solid black',
+                    // border: '0.2vh solid black',
                     '&:hover': {
                         backgroundColor: 'black',
                         color: 'white',
-                        border: '2px solid black',
+                        // border: '0.2vh solid black',
                         
                       },
                     
@@ -36,11 +35,11 @@ import { styled } from "@stitches/react";
                 false:{
                     backgroundColor: 'White',
                     color: 'BLACK',
-                    border: '2px solid black',
+                    // border: '2px solid black',
                     '&:hover': {
                         backgroundColor: 'white',
                         color: 'Black',
-                        border: '2px solid black',
+                        // border: '2px solid black',
                         
                       },
                 }

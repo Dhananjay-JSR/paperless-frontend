@@ -4,5 +4,5 @@ export const Container = styled('div',{
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '53rem'
+    height: '86vh'
 })

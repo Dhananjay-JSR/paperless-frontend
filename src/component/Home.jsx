@@ -31,9 +31,9 @@ function Home() {
 
   function submitData() {
     setrequest_sent(!request_sent);
-    console.log(passInput.current.value);
-    console.log(msgBox);
-    navigator.clipboard.writeText("Hello");
+    // console.log(passInput.current.value);
+    // console.log(msgBox);
+    
     let content = {
       message: msgBox,
       password: +passInput.current.value,
@@ -42,20 +42,20 @@ function Home() {
       .post("https://paperless-backend-mongo.up.railway.app/storage", content)
       .then(function (response) {
         setreceived_data(response.data.HashedLink);
-        console.log(response.data.HashedLink);
+        // console.log(response.data.HashedLink);
         setTimeout(() => {
           setnotifyTimeout(true)
         }, 3000);
-
+        navigator.clipboard.writeText(response.data.HashedLink);
       })
       .catch(function (error) {
-        console.log(error);
+        window.alert("Error Occured "+error)
       });
   }
   //NOTICATION
 const revealNotification= keyframes({
   "0%":{
-    transform: 'translate(0,-50px)',
+    transform: 'translate(0,-5vh)',
     opacity: 0
   },
   "100%":{transform: 'translate(0,0)',
@@ -66,27 +66,26 @@ opacity: "100%"
 
 const Notification = styled('div',{
   position: 'fixed',
-  right: '100px',
+  right: '10vw',
   zIndex: 10,
-  width: '500px',
-  height: '50px',
-  borderRadius: '15px',
-  fontSize: '30px',
+  width: '30vw',
+  height: '5vh',
+  borderRadius: '1.5vh',
+  fontSize: '3vh',
   fontFamily: 'system-ui',
   fontWeight: 'bold',
   textAlign: 'center',
-  top: '150px',
+  top: '15vh',
  
   variants:{
     "darkmode":{
       true:{
-
-        border: '2px solid black',
+        border: '0.2vh solid black',
         background: '#f5f5f5',
         color: 'Black'
       },
       false:{
-        border: '2px solid white',
+        border: '0.2vh solid white',
         background: '#151718',
         color: 'white'
       }
@@ -119,7 +118,7 @@ const Notification = styled('div',{
     justifyContent: "center",
     alignItems: "center",
     zIndex: 7,
-    backdropFilter: "blur(15px)",
+    backdropFilter: "blur(1.5vh)",
     animation: `${revealModal} 0.2s 1 `,
     variants: {
       display: {
@@ -135,9 +134,9 @@ const Notification = styled('div',{
 
   const ModalWindow = styled("div", {
     backgroundColor: "Yellow",
-    height: "20rem",
-    width: "35rem",
-    borderRadius: "25px",
+    height: "32vh",
+    width: "29vw",
+    borderRadius: "2.5vh",
     position: "relative",
     display: "grid",
     justifyContent: "center",
@@ -146,13 +145,13 @@ const Notification = styled('div',{
       darkMode: {
         false: {
           backgroundColor: "#151718",
-          border: "2px solid white",
+          border: "0.2vh solid white",
           color: "White",
         },
         true: {
           backgroundColor: "#f5f5f5",
           color: "Black",
-          border: "2px solid black",
+          border: "0.2vh solid black",
         },
       },
     },
@@ -169,8 +168,8 @@ const Notification = styled('div',{
           <TextContainer
             css={{
               textAlign: "center",
-              marginTop: "10px",
-              fontSize: "xx-large",
+              marginTop: "1vh",
+              fontSize: "3vh",
               fontWeight: "bold",
               fontFamily: "sans-serif",
             }}
@@ -181,11 +180,11 @@ const Notification = styled('div',{
           {request_sent ? (
             <TextContainer
               css={{
-                width: "500px",
-                height: "60px",
+                width: "50vw",
+                height: "6vh",
                 overflowY: "hidden",
-                marginBottom: "100px",
-                fontSize: "21px",
+                marginBottom: "10vh",
+                fontSize: "2.1vh",
                 textAlign: "center",
                 fontWeight: "bold",
               }}
@@ -197,10 +196,10 @@ const Notification = styled('div',{
           ) : (
             <InputTextBox
               css={{
-                width: "400px",
-                height: "20px",
+                width: "20vw",
+                height: "2vh",
                 overflowY: "hidden",
-                marginBottom: "100px",
+                marginBottom: "10vh",
               }}
               placeholder="ENTER PASSWORD TO ENCRYPT IT"
               ref={passInput}
@@ -221,8 +220,8 @@ const Notification = styled('div',{
             }}
             css={{
               position: "absolute",
-              bottom: "20px",
-              right: "180px",
+              bottom: "2vh",
+              right: "9vw",
             }}
           >
             {request_sent ? <Loader darkMode={DarkModeValue} /> : ``}
@@ -239,8 +238,8 @@ const Notification = styled('div',{
             }}
             css={{
               position: "absolute",
-              bottom: "20px",
-              right: "40px",
+              bottom: "2vh",
+              right: "2vw",
             }}
           >
             Cancel
@@ -252,9 +251,9 @@ const Notification = styled('div',{
           PaperLess
           <Button
             css={{
-              position: "fixed",
-              right: "60px",
-              top: "1.25rem",
+              position: "absolute",
+              right: "6vw",
+              top: "1vh",
             }}
             onClick={ThemeChanger}
             darkMode={DarkModeValue}
@@ -268,7 +267,7 @@ const Notification = styled('div',{
           <HeadLine darkMode={DarkModeValue}>INTRODUCING</HeadLine>
           <HeadLine
             css={{
-              fontSize: "100px",
+              fontSize: "10vh",
               background:
                 "linear-gradient(90deg, #FEAC5E 0%, #C779D0 50%, #4BC0C8 100%)",
               "-webkit-background-clip": "text",
@@ -287,19 +286,20 @@ const Notification = styled('div',{
           <HeadLine
             darkMode={DarkModeValue}
             css={{
-              fontSize: "60px",
+              fontSize: "5vh",
               fontWeight: "bold",
-              marginTop: "70px",
+              marginTop: "5vh",
               width: "max-content",
               marginLeft: "auto",
               marginRight: "auto",
-              marginBottom: "70px",
+              marginBottom: "5vh",
               animation: "none",
             }}
           >
             Ready to Experience the Future ?
           </HeadLine>
           <InputTextBox
+          spellCheck={"false"}
             placeholder="INSERT YOUR NOTE HERE"
             darkMode={DarkModeValue}
             value={msgBox}
@@ -319,7 +319,7 @@ const Notification = styled('div',{
               width: "fit-content",
               marginLeft: "auto",
               marginRight: "auto",
-              marginTop: "30px",
+              marginTop: "3vh",
             }}
             darkMode={DarkModeValue}
           >
