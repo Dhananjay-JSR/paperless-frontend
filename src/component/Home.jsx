@@ -15,12 +15,15 @@ import { Loader } from "./style/loader";
 import axios from "axios";
 function Home() {
 
-  const passInput = useRef()
   const [DarkModeValue,SetDarkModeValue]= useContext(DarkMode)
   const [open, setopen] = useState(false)
   const [msgBox, setmsgBox] = useState('')
+  
+  const passInput = useRef()
+  const [received_data, setreceived_data] = useState(false)
+  const [request_sent, setrequest_sent] = useState(false)
+  const [disabled, setdisabled] = useState(false)
   // let request_sent = false;
- const [request_sent, setrequest_sent] = useState(false)
   globalStyles();
   function ThemeChanger() {
     SetDarkModeValue(!DarkModeValue)
@@ -28,6 +31,7 @@ function Home() {
 
   const [hashedLink, sethashedLink] = useState("")
 function submitData(){
+  setrequest_sent(!request_sent)
   console.log(passInput.current.value)
   console.log(msgBox)
   navigator.clipboard.writeText("Hello")
@@ -37,7 +41,8 @@ function submitData(){
 }
   axios.post('https://paperless-backend-mongo.up.railway.app/storage', content)
   .then(function (response) {
-    console.log(response)
+    setreceived_data(response.data.HashedLink)
+    console.log(response.data.HashedLink)
   })
   .catch(function (error) {
     console.log(error);
@@ -110,7 +115,21 @@ const ModalWindow=styled('div',{
           ENTER YOUR PASSWORD
 
         </TextContainer>
-        <InputTextBox css={
+        {request_sent? 
+        <TextContainer css={{
+          width:'500px',
+          height: '60px',
+          overflowY: 'hidden',
+          marginBottom: '100px',
+          fontSize: '25px',
+          textAlign: 'center',
+          fontWeight: 'bold'
+        }}>
+          
+        {received_data? received_data :"Waiting for Server to Respond Back"}
+        </TextContainer>
+       
+        :  <InputTextBox css={
           {
             width:'400px',
             height: '20px',
@@ -118,9 +137,10 @@ const ModalWindow=styled('div',{
             marginBottom: '100px'
          }
         } 
-
-        placeholder="ENTER PASSWORD TO ENCRYPT IT" ref={passInput} darkMode={DarkModeValue}>
+        
+        placeholder="ENTER PASSWORD TO ENCRYPT IT" ref={passInput} disabled={disabled} darkMode={DarkModeValue}>
             </InputTextBox>
+      }
         <Button
         darkMode={DarkModeValue}
         onClick={()=>{if (passInput.current.value===''){window.alert("Enter Valid password")}else {submitData()}}}
@@ -129,8 +149,7 @@ const ModalWindow=styled('div',{
           bottom: '20px',
           right: '180px'
         }}>
-          {request_sent? `<Loader/>`:`` }
-          
+          {request_sent? <Loader/>:`` }
           <div>
           {request_sent? ``:`Submit` }
           </div>
@@ -164,12 +183,10 @@ const ModalWindow=styled('div',{
       </Header>
       <Container>
             <Content1 darkMode={DarkModeValue}>
-
             <HeadLine darkMode={DarkModeValue}>
               INTRODUCING
             </HeadLine>
             <HeadLine 
-            
             css={{
               fontSize: '100px',
               background: 'linear-gradient(90deg, #FEAC5E 0%, #C779D0 50%, #4BC0C8 100%)',
@@ -192,7 +209,6 @@ const ModalWindow=styled('div',{
             </Content1>
             <Content2 darkMode={DarkModeValue}>
             <HeadLine
-            
             darkMode={DarkModeValue}
             css={{
               fontSize: "60px",
