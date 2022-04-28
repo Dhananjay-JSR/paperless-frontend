@@ -43,7 +43,7 @@ function Boilerplate() {
       headers: {
         'Content-Type': 'application/json'
       },
-      credentials: true,
+      credentials:  "include",
       method: "POST",
       body: JSON.stringify(_data),
     })
