@@ -22,11 +22,11 @@ import { styled } from "@stitches/react";
                 true: {
                     backgroundColor: 'BLACK',
                     color: 'white',
-                    border: '0.2vh solid black',
+                    // border: '0.2vh solid black',
                     '&:hover': {
                         backgroundColor: 'black',
                         color: 'white',
-                        border: '0.2vh solid black',
+                        // border: '0.2vh solid black',
                         
                       },
                     
@@ -35,11 +35,11 @@ import { styled } from "@stitches/react";
                 false:{
                     backgroundColor: 'White',
                     color: 'BLACK',
-                    border: '2px solid black',
+                    // border: '2px solid black',
                     '&:hover': {
                         backgroundColor: 'white',
                         color: 'Black',
-                        border: '2px solid black',
+                        // border: '2px solid black',
                         
                       },
                 }

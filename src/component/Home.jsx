@@ -80,7 +80,6 @@ const Notification = styled('div',{
   variants:{
     "darkmode":{
       true:{
-
         border: '0.2vh solid black',
         background: '#f5f5f5',
         color: 'Black'
