@@ -183,7 +183,7 @@ useEffect(()=>{
           href="https://github.com/Dhananjay-JSR/paperless-frontend"
         >
          
-          Dipesh
+          DS
         </TextContainer>
         With ❤
       </Footer>
