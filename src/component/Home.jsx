@@ -29,7 +29,6 @@ function Home() {
     SetDarkModeValue(!DarkModeValue);
   }
 
-  const [hashedLink, sethashedLink] = useState("");
   function submitData() {
     setrequest_sent(!request_sent);
     console.log(passInput.current.value);
