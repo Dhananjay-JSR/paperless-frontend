@@ -20,42 +20,48 @@ function Boilerplate() {
   const { id } = useParams();
 
   function OnValidateSubmit() {
-    //   axios
-    //   .post(`https://paperless-backend-mongo.up.railway.app/storage/${id}`,{
-    //     password: PassRef.current.value
-    //   },{
-    //     withCredentials: true
-    //   } )
-    //   .then(()=>{
+      axios
+      .post(`https://paperless-backend-mongo.up.railway.app/storage/${id}`,{
+        password: PassRef.current.value
+      },{
+        withCredentials: true
+      } )
+      .then(()=>{
 
-    //   }).catch((err)=>{
-    //     if (err.response.status===403){
-    //       window.alert("Token Expired Please Refresh Page")
-    //     }else if (err.response.status===403){
-    //       window.alert("Password Didn't match")
-    //     }
-    //   })
-    let _data = {
-      password: PassRef.current.value,
-    }
+      }).catch((err)=>{
+        if (err.response.status===403){
+          window.alert("Token Expired Please Refresh Page")
+        }else if (err.response.status===403){
+          window.alert("Password Didn't match")
+        }
+      })
 
-    fetch(`https://paperless-backend-mongo.up.railway.app/storage/${id}`, {
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      credentials:  "include",
-      method: "POST",
-      body: JSON.stringify(_data),
-    })
-      .then((data) => console.log("Data Recieved" + JSON.stringify(data)))
-      .catch((err) => {
-        console.log(err)
-        // if (err.response.status === 403) {
-        //   window.alert("Token Expired Please Refresh Page");
-        // } else if (err.response.status === 410) {
-        //   window.alert("PassWord Didn't Match");
-        // }
-      });
+
+
+
+
+
+    // let _data = {
+    //   password: PassRef.current.value,
+    // }
+
+    // fetch(`https://paperless-backend-mongo.up.railway.app/storage/${id}`, {
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   credentials:  "include",
+    //   method: "POST",
+    //   body: JSON.stringify(_data),
+    // })
+    //   .then((data) => console.log("Data Recieved" + JSON.stringify(data)))
+    //   .catch((err) => {
+    //     console.log(err)
+    //     // if (err.response.status === 403) {
+    //     //   window.alert("Token Expired Please Refresh Page");
+    //     // } else if (err.response.status === 410) {
+    //     //   window.alert("PassWord Didn't Match");
+    //     // }
+    //   });
   }
 
   useEffect(() => {
