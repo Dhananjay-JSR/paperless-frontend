@@ -13,8 +13,10 @@ import { InputTextBox } from "./style/InputTextBox";
 import { keyframes, styled } from "@stitches/react";
 import { Loader } from "./style/loader";
 import axios from "axios";
+import { API_URL } from "../util/ip";
 
 function Home() {
+  axios.defaults.withCredentials = true;
   const [DarkModeValue, SetDarkModeValue] = useContext(DarkMode);
   const [open, setopen] = useState(false);
   const [msgBox, setmsgBox] = useState("");
@@ -40,7 +42,7 @@ function Home() {
       password: passInput.current.value,
     };
     axios
-      .post(`/Storage`, content)
+      .post(`${API_URL}/Storage`, content)
       .then(function (response) {
         setreceived_data(response.data.HashedLink);
         // console.log(response.data.HashedLink);
