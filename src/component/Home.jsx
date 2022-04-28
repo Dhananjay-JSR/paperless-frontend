@@ -32,9 +32,9 @@ function Home() {
   const [hashedLink, sethashedLink] = useState("");
   function submitData() {
     setrequest_sent(!request_sent);
-    // console.log(passInput.current.value);
-    // console.log(msgBox);
-    
+    console.log(passInput.current.value);
+    console.log(msgBox);
+    navigator.clipboard.writeText("Hello");
     let content = {
       message: msgBox,
       password: +passInput.current.value,
@@ -43,11 +43,11 @@ function Home() {
       .post("https://paperless-backend-mongo.up.railway.app/storage", content)
       .then(function (response) {
         setreceived_data(response.data.HashedLink);
-        navigator.clipboard.writeText(response.data.HashedLink);
-        // console.log(response.data.HashedLink);
+        console.log(response.data.HashedLink);
         setTimeout(() => {
           setnotifyTimeout(true)
         }, 3000);
+
       })
       .catch(function (error) {
         console.log(error);
@@ -236,6 +236,7 @@ const Notification = styled('div',{
               setopen((prev) => !prev);
               setrequest_sent(false);
               setreceived_data(false)
+              setnotifyTimeout(false)
             }}
             css={{
               position: "absolute",
