@@ -21,23 +21,49 @@ function Boilerplate() {
   const {id} = useParams();
 
   function OnValidateSubmit(){
-    axios
-    .post(`https://paperless-backend-mongo.up.railway.app/storage/${id}`,{
-      password: PassRef.current.value
-    },{
-      withCredentials: true
-    } )
-    .then(()=>{
+  //   axios
+  //   .post(`https://paperless-backend-mongo.up.railway.app/storage/${id}`,{
+  //     password: PassRef.current.value
+  //   },{
+  //     withCredentials: true
+  //   } )
+  //   .then(()=>{
 
-    }).catch((err)=>{
-      if (err.response.status===403){
-        window.alert("Token Expired Please Refresh Page")
-      }else if (err.response.status===403){
-        window.alert("Password Didn't match")
+  //   }).catch((err)=>{
+  //     if (err.response.status===403){
+  //       window.alert("Token Expired Please Refresh Page")
+  //     }else if (err.response.status===403){
+  //       window.alert("Password Didn't match")
+  //     }
+  //   })
+
+  fetch("/echo/json/",
+{
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    credentials: true,
+    method: "POST",
+    body: JSON.stringify({
+          password: PassRef.current.value
+        })
+}).then(data=>console.log("Data Recieved"+data)).catch(err=>{
+
+  if (err.response.status===403){
+          window.alert("Token Expired Please Refresh Page")
       }
-    })
+      else if (err.response.status===410) {
+        window.alert("PassWord Didn't Match")
+      }
+})
     
+
+
+  
   }
+
+  
 
 useEffect(()=>{
   
@@ -55,7 +81,10 @@ useEffect(()=>{
   // }).catch(err=>{if(err.response.status===404){console.log("URL IS NOT REGISTER TO DABASE"+err)};setfetchingLink(true)})
 
 
-  fetch(`https://paperless-backend-mongo.up.railway.app/storage/${id}`).then(res=>{
+  fetch(`https://paperless-backend-mongo.up.railway.app/storage/${id}`,{
+    method: 'GET',
+    credentials: 'include'
+  }).then(res=>{
       setfetchingLink(true)
       // console.log(res);1
       
