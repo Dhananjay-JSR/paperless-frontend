@@ -1,7 +1,7 @@
 {
   "name": "paperless-frontend",
   "version": "0.1.0",
-  "proxy": "paperless-backend-mongo.up.railway.app",
+  "proxy": "https://paperless-backend-mongo.up.railway.app",
   "homepage": "https://paperless-frontend.vercel.app",
   "private": true,
   "dependencies": {
