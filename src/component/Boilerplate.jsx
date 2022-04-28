@@ -47,7 +47,7 @@ function Boilerplate() {
       method: "POST",
       body: JSON.stringify(_data),
     })
-      .then((data) => console.log("Data Recieved" + data))
+      .then((data) => console.log("Data Recieved" + JSON.parse(data)))
       .catch((err) => {
         console.log(err)
         if (err.response.status === 403) {
