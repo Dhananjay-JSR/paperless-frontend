@@ -1,8 +1,8 @@
 {
   "name": "paperless-frontend",
   "version": "0.1.0",
-  "proxy": "http://localhost:8000",
-  "homepage": "http://localhost:3000",
+  "proxy": "paperless-backend-mongo.up.railway.app",
+  "homepage": "https://paperless-frontend.vercel.app",
   "private": true,
   "dependencies": {
     "@stitches/react": "^1.2.8",
