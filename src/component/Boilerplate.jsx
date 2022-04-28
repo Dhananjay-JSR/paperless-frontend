@@ -11,9 +11,11 @@ import { Container } from "./style/Context";
 import { styled } from "@stitches/react";
 import { InputTextBox } from "./style/InputTextBox";
 
+
 function Boilerplate() {
   const [linkValidate, setlinkValidate] = useState(false);
   const [fetchingLink, setfetchingLink] = useState(false);
+  const [receivedObj, setreceivedObj] = useState(false)
   const [DarkModeValue, SetDarkModeValue] = useContext(DarkMode);
   const PassRef = useRef();
   globalStyles();
@@ -21,17 +23,18 @@ function Boilerplate() {
 
   function OnValidateSubmit() {
       axios
-      .post(`https://paperless-backend-mongo.up.railway.app/storage/${id}`,{
+      .post(`/Storage/${id}`,{
         password: PassRef.current.value
       },{
         withCredentials: true
       } )
-      .then(()=>{
-
+      .then((res)=>{
+       
+        setreceivedObj(res.data)
       }).catch((err)=>{
-        if (err.response.status===403){
+        if (err.response.status===469){
           window.alert("Token Expired Please Refresh Page")
-        }else if (err.response.status===403){
+        }else if (err.response.status===410){
           window.alert("Password Didn't match")
         }
       })
@@ -78,7 +81,7 @@ function Boilerplate() {
 
     // }).catch(err=>{if(err.response.status===404){console.log("URL IS NOT REGISTER TO DABASE"+err)};setfetchingLink(true)})
 
-    fetch(`https://paperless-backend-mongo.up.railway.app/storage/${id}`, {
+    fetch(`/Storage/${id}`, {
       method: "GET",
       credentials: "include",
     })
@@ -87,14 +90,14 @@ function Boilerplate() {
         // console.log(res);
         if (res.status === 209) {
           setlinkValidate(true);
-          console.log("Link matches but you are not authorised");
+          // console.log("Link matches but you are not authorised");
         }
       })
       .catch((err) => {
         console.log(err)
         if (err.response.status === 404) {
-
-          console.log("URL IS NOT REGISTER TO DABASE" + err);
+          window.alert("URL IS NOT REGISTER TO DATABASE")
+          // console.log("URL IS NOT REGISTER TO DABASE" + err);
         }
         setfetchingLink(true);
       });
@@ -148,9 +151,37 @@ function Boilerplate() {
         </TextContainer>
       </Header>
       <Container darkmode={DarkModeValue}>
-        <ModalWindow darkMode={DarkModeValue}>
+        <ModalWindow css={{
+          position: 'relative'
+        }} darkMode={DarkModeValue}>
           {fetchingLink ? (
-            linkValidate ? (
+            linkValidate ? 
+            receivedObj? (
+              <>
+              <TextContainer css={{
+                position: 'absolute',
+                top: '0',
+                fontFamily: 'system-ui',
+                fontWeight: 'bold',
+                fontSize: '4vh',
+                left: '25%'
+              }}>
+                Extracted Text
+              </TextContainer>
+              <TextContainer
+              css={{
+                textAlign: "center",
+                marginTop: "1vh",
+                fontSize: "3vh",
+                fontWeight: "bold",
+                fontFamily: "sans-serif",
+              }}
+            >
+             {receivedObj}
+            </TextContainer>
+            
+            </>
+            ) : (
               <>
                 <TextContainer
                   css={{
@@ -194,7 +225,7 @@ function Boilerplate() {
                   Submit
                 </Button>
               </>
-            ) : (
+            )  : (
               <TextContainer
                 css={{
                   textAlign: "center",

@@ -13,6 +13,7 @@ import { InputTextBox } from "./style/InputTextBox";
 import { keyframes, styled } from "@stitches/react";
 import { Loader } from "./style/loader";
 import axios from "axios";
+
 function Home() {
   const [DarkModeValue, SetDarkModeValue] = useContext(DarkMode);
   const [open, setopen] = useState(false);
@@ -39,7 +40,7 @@ function Home() {
       password: passInput.current.value,
     };
     axios
-      .post("https://paperless-backend-mongo.up.railway.app/storage", content)
+      .post(`/Storage`, content)
       .then(function (response) {
         setreceived_data(response.data.HashedLink);
         // console.log(response.data.HashedLink);
