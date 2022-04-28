@@ -36,7 +36,7 @@ function Home() {
     
     let content = {
       message: msgBox,
-      password: +passInput.current.value,
+      password: passInput.current.value,
     };
     axios
       .post("https://paperless-backend-mongo.up.railway.app/storage", content)
