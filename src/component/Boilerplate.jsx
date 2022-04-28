@@ -24,6 +24,8 @@ function Boilerplate() {
     axios
     .post(`https://paperless-backend-mongo.up.railway.app/storage/${id}`,{
       password: PassRef.current.value
+    },{
+      withCredentials: true
     } )
     .then(()=>{
 
@@ -40,6 +42,7 @@ function Boilerplate() {
 useEffect(()=>{
   
   axios.get(`https://paperless-backend-mongo.up.railway.app/storage/${id}`,{
+    withCredentials: true
 
   }).then(res=>{
     setfetchingLink(true)
