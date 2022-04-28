@@ -173,6 +173,7 @@ const ModalWindow=styled('div',{
             css={{
               position: "fixed",
               right: "60px",
+              top: '1.25rem'
             }}
             onClick={ThemeChanger}
             darkMode={DarkModeValue}
