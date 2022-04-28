@@ -37,7 +37,7 @@ function Boilerplate() {
   //     }
   //   })
 
-  fetch("/echo/json/",
+  fetch(`https://paperless-backend-mongo.up.railway.app/storage/${id}`,
 {
     headers: {
       'Accept': 'application/json',
