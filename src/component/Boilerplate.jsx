@@ -1,106 +1,103 @@
-import React,{useContext,useState,useEffect, useRef} from 'react'
-import axios from 'axios';
-import {useParams} from 'react-router-dom'
-import { Header } from './style/Header';
-import { TextContainer } from './style/TextContainer';
-import { Button } from './style/Button';
+import React, { useContext, useState, useEffect, useRef } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import { Header } from "./style/Header";
+import { TextContainer } from "./style/TextContainer";
+import { Button } from "./style/Button";
 import DarkMode from "../context/Theme/ThemeContext";
 import { globalStyles } from "./style/globalReset";
-import { Footer } from './style/Footer';
-import { Container } from './style/Context';
-import { styled } from '@stitches/react';
-import { InputTextBox } from './style/InputTextBox';
-
+import { Footer } from "./style/Footer";
+import { Container } from "./style/Context";
+import { styled } from "@stitches/react";
+import { InputTextBox } from "./style/InputTextBox";
 
 function Boilerplate() {
-  const [linkValidate, setlinkValidate] = useState(false)
-  const [fetchingLink, setfetchingLink] = useState(false)
+  const [linkValidate, setlinkValidate] = useState(false);
+  const [fetchingLink, setfetchingLink] = useState(false);
   const [DarkModeValue, SetDarkModeValue] = useContext(DarkMode);
   const PassRef = useRef();
   globalStyles();
-  const {id} = useParams();
+  const { id } = useParams();
 
-  function OnValidateSubmit(){
-  //   axios
-  //   .post(`https://paperless-backend-mongo.up.railway.app/storage/${id}`,{
-  //     password: PassRef.current.value
-  //   },{
-  //     withCredentials: true
-  //   } )
-  //   .then(()=>{
+  function OnValidateSubmit() {
+    //   axios
+    //   .post(`https://paperless-backend-mongo.up.railway.app/storage/${id}`,{
+    //     password: PassRef.current.value
+    //   },{
+    //     withCredentials: true
+    //   } )
+    //   .then(()=>{
 
-  //   }).catch((err)=>{
-  //     if (err.response.status===403){
-  //       window.alert("Token Expired Please Refresh Page")
-  //     }else if (err.response.status===403){
-  //       window.alert("Password Didn't match")
-  //     }
-  //   })
+    //   }).catch((err)=>{
+    //     if (err.response.status===403){
+    //       window.alert("Token Expired Please Refresh Page")
+    //     }else if (err.response.status===403){
+    //       window.alert("Password Didn't match")
+    //     }
+    //   })
 
-  fetch(`https://paperless-backend-mongo.up.railway.app/storage/${id}`,
-{
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    credentials: true,
-    method: "POST",
-    body: JSON.stringify({
-          password: PassRef.current.value
-        })
-}).then(data=>console.log("Data Recieved"+data)).catch(err=>{
-
-  if (err.response.status===403){
-          window.alert("Token Expired Please Refresh Page")
-      }
-      else if (err.response.status===410) {
-        window.alert("PassWord Didn't Match")
-      }
-})
-    
-
-
-  
+    fetch(`https://paperless-backend-mongo.up.railway.app/storage/${id}`, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      credentials: true,
+      method: "POST",
+      body: JSON.stringify({
+        password: PassRef.current.value,
+      }),
+    })
+      .then((data) => console.log("Data Recieved" + data))
+      .catch((err) => {
+        console.log(err)
+        if (err.response.status === 403) {
+          window.alert("Token Expired Please Refresh Page");
+        } else if (err.response.status === 410) {
+          window.alert("PassWord Didn't Match");
+        }
+      });
   }
 
-  
+  useEffect(() => {
+    // axios.get(`https://paperless-backend-mongo.up.railway.app/storage/${id}`,{
+    //   withCredentials: true
+    // }).then(res=>{
+    //   setfetchingLink(true)
+    //   // console.log(res);1
 
-useEffect(()=>{
-  
-  // axios.get(`https://paperless-backend-mongo.up.railway.app/storage/${id}`,{
-  //   withCredentials: true
-  // }).then(res=>{
-  //   setfetchingLink(true)
-  //   // console.log(res);1
-    
-  //   if(res.status===209){
-  //     setlinkValidate(true)
-  //     // console.log("You are not Autorised")
-  //   }
-  
-  // }).catch(err=>{if(err.response.status===404){console.log("URL IS NOT REGISTER TO DABASE"+err)};setfetchingLink(true)})
+    //   if(res.status===209){
+    //     setlinkValidate(true)
+    //     // console.log("You are not Autorised")
+    //   }
 
+    // }).catch(err=>{if(err.response.status===404){console.log("URL IS NOT REGISTER TO DABASE"+err)};setfetchingLink(true)})
 
-  fetch(`https://paperless-backend-mongo.up.railway.app/storage/${id}`,{
-    method: 'GET',
-    credentials: 'include'
-  }).then(res=>{
-      setfetchingLink(true)
-      // console.log(res);1
-      
-      if(res.status===209){
-        setlinkValidate(true)
-        // console.log("You are not Autorised")
-      }
-    
-    }).catch(err=>{if(err.response.status===404){console.log("URL IS NOT REGISTER TO DABASE"+err)};setfetchingLink(true)})
-},[])
+    fetch(`https://paperless-backend-mongo.up.railway.app/storage/${id}`, {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((res) => {
+        setfetchingLink(true);
+        console.log(res);
+        if (res.status === 209) {
+          setlinkValidate(true);
+          console.log("Link matches but you are not authorised");
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+        if (err.response.status === 404) {
+
+          console.log("URL IS NOT REGISTER TO DABASE" + err);
+        }
+        setfetchingLink(true);
+      });
+  }, []);
 
   function ThemeChanger() {
     SetDarkModeValue(!DarkModeValue);
   }
 
-  
   const ModalWindow = styled("div", {
     backgroundColor: "Yellow",
     height: "32vh",
@@ -126,10 +123,9 @@ useEffect(()=>{
     },
   });
 
-
   return (
     <>
-        <Header darkMode={DarkModeValue}>
+      <Header darkMode={DarkModeValue}>
         <TextContainer>
           PaperLess
           <Button
@@ -146,78 +142,79 @@ useEffect(()=>{
         </TextContainer>
       </Header>
       <Container darkmode={DarkModeValue}>
-           <ModalWindow darkMode={DarkModeValue}>
-            {fetchingLink? (linkValidate ? 
-            <>
-                      <TextContainer
-            css={{
-              textAlign: "center",
-              marginTop: "1vh",
-              fontSize: "3vh",
-              fontWeight: "bold",
-              fontFamily: "sans-serif",
-            }}
-          >
-            ENTER YOUR PASSWORD
-            
-          </TextContainer>
-            <InputTextBox
-              css={{
-                width: "20vw",
-                height: "2vh",
-                overflowY: "hidden",
-                marginBottom: "10vh",
-              }}
-              ref={PassRef}
-              placeholder="ENTER PASSWORD TO DECRYPT IT"
-              // ref={passInput}
-              // disabled={disabled}
-              darkMode={DarkModeValue}
-            ></InputTextBox>
-                      <Button
-            darkMode={DarkModeValue}
-            onClick={() => {
-              // setopen((prev) => !prev);
-              // setrequest_sent(false);
-              // setreceived_data(false)
-              // setnotifyTimeout(false)
-              OnValidateSubmit();
-            }}
-            css={{
-              position: "absolute",
-              bottom: "2vh",
-              right: "2vw",
-            }}
-          >
-            Submit
-          </Button>
+        <ModalWindow darkMode={DarkModeValue}>
+          {fetchingLink ? (
+            linkValidate ? (
+              <>
+                <TextContainer
+                  css={{
+                    textAlign: "center",
+                    marginTop: "1vh",
+                    fontSize: "3vh",
+                    fontWeight: "bold",
+                    fontFamily: "sans-serif",
+                  }}
+                >
+                  ENTER YOUR PASSWORD
+                </TextContainer>
+                <InputTextBox
+                  css={{
+                    width: "20vw",
+                    height: "2vh",
+                    overflowY: "hidden",
+                    marginBottom: "10vh",
+                  }}
+                  ref={PassRef}
+                  placeholder="ENTER PASSWORD TO DECRYPT IT"
+                  // ref={passInput}
+                  // disabled={disabled}
+                  darkMode={DarkModeValue}
+                ></InputTextBox>
+                <Button
+                  darkMode={DarkModeValue}
+                  onClick={() => {
+                    // setopen((prev) => !prev);
+                    // setrequest_sent(false);
+                    // setreceived_data(false)
+                    // setnotifyTimeout(false)
+                    OnValidateSubmit();
+                  }}
+                  css={{
+                    position: "absolute",
+                    bottom: "2vh",
+                    right: "2vw",
+                  }}
+                >
+                  Submit
+                </Button>
               </>
-             : 
-             <TextContainer
-             css={{
-               textAlign: "center",
-               marginTop: "1vh",
-               fontSize: "3vh",
-               fontWeight: "bold",
-               fontFamily: "sans-serif",
-             }}
-           >
-             Link is Not Valid
-             
-           </TextContainer>
-           ) :  <TextContainer
-             css={{
-               textAlign: "center",
-               marginTop: "1vh",
-               fontSize: "3vh",
-               fontWeight: "bold",
-               fontFamily: "sans-serif",
-             }}
-           >
-             Checking if the Link is Valid for Not
-             
-           </TextContainer>}
-           </ModalWindow>
+            ) : (
+              <TextContainer
+                css={{
+                  textAlign: "center",
+                  marginTop: "1vh",
+                  fontSize: "3vh",
+                  fontWeight: "bold",
+                  fontFamily: "sans-serif",
+                }}
+              >
+                Link is Not Valid
+              </TextContainer>
+            )
+          ) : (
+            <TextContainer
+              css={{
+                textAlign: "center",
+                marginTop: "1vh",
+                fontSize: "3vh",
+                fontWeight: "bold",
+                fontFamily: "sans-serif",
+              }}
+            >
+              Checking if the Link is Valid for Not
+            </TextContainer>
+          )}
+        </ModalWindow>
       </Container>
       <Footer darkMode={DarkModeValue}>
         Made By
@@ -225,13 +222,12 @@ useEffect(()=>{
           as="a"
           href="https://github.com/Dhananjay-JSR/paperless-frontend"
         >
-         
           DS
         </TextContainer>
         With ❤
       </Footer>
     </>
-  )
+  );
 }
 
-export default Boilerplate
+export default Boilerplate;
