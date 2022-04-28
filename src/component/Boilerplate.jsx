@@ -1,4 +1,4 @@
-import React,{useContext,useState,useEffect} from 'react'
+import React,{useContext,useState,useEffect, useRef} from 'react'
 import axios from 'axios';
 import {useParams} from 'react-router-dom'
 import { Header } from './style/Header';
@@ -16,32 +16,30 @@ function Boilerplate() {
   const [linkValidate, setlinkValidate] = useState(false)
   const [fetchingLink, setfetchingLink] = useState(false)
   const [DarkModeValue, SetDarkModeValue] = useContext(DarkMode);
+  const PassRef = useRef();
   globalStyles();
   const {id} = useParams();
 
   function OnValidateSubmit(){
+    axios
+    .post(`https://paperless-backend-mongo.up.railway.app/storage/${id}`,{
+      password: PassRef.current.value
+    } )
+    .then(()=>{
 
-
-    axios.get(`http://localhost:8000/storage/${id}`,{
-
-    }).then(res=>{
-      // setfetchingLink(true)
-      // console.log(res);1
-      
-      // if(res.status===209){
-        // setlinkValidate(true)
-        // console.log("You are not Autorised")
-      // }
-    
-    }).catch(err=>{if(err.response.status===404){console.log("URL IS NOT REGISTER TO DABASE"+err)};setfetchingLink(true)}
-    
-    )
+    }).catch((err)=>{
+      if (err.response.status===403){
+        window.alert("Token Expired Please Refresh Page")
+      }else if (err.response.status===403){
+        window.alert("Password Didn't match")
+      }
+    })
     
   }
 
 useEffect(()=>{
   
-  axios.get(`http://localhost:8000/storage/${id}`,{
+  axios.get(`https://paperless-backend-mongo.up.railway.app/storage/${id}`,{
 
   }).then(res=>{
     setfetchingLink(true)
@@ -127,6 +125,7 @@ useEffect(()=>{
                 overflowY: "hidden",
                 marginBottom: "10vh",
               }}
+              ref={PassRef}
               placeholder="ENTER PASSWORD TO DECRYPT IT"
               // ref={passInput}
               // disabled={disabled}
@@ -139,6 +138,7 @@ useEffect(()=>{
               // setrequest_sent(false);
               // setreceived_data(false)
               // setnotifyTimeout(false)
+              OnValidateSubmit();
             }}
             css={{
               position: "absolute",
