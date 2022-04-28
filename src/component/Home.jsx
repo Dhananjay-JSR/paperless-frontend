@@ -31,9 +31,9 @@ function Home() {
 
   function submitData() {
     setrequest_sent(!request_sent);
-    console.log(passInput.current.value);
-    console.log(msgBox);
-    navigator.clipboard.writeText("Hello");
+    // console.log(passInput.current.value);
+    // console.log(msgBox);
+    
     let content = {
       message: msgBox,
       password: +passInput.current.value,
@@ -42,14 +42,14 @@ function Home() {
       .post("https://paperless-backend-mongo.up.railway.app/storage", content)
       .then(function (response) {
         setreceived_data(response.data.HashedLink);
-        console.log(response.data.HashedLink);
+        // console.log(response.data.HashedLink);
         setTimeout(() => {
           setnotifyTimeout(true)
         }, 3000);
-
+        navigator.clipboard.writeText(response.data.HashedLink);
       })
       .catch(function (error) {
-        console.log(error);
+        window.alert("Error Occured "+error)
       });
   }
   //NOTICATION
@@ -252,9 +252,9 @@ const Notification = styled('div',{
           PaperLess
           <Button
             css={{
-              position: "fixed",
-              right: "60px",
-              top: "1.25rem",
+              position: "absolute",
+              right: "6vw",
+              top: "1vh",
             }}
             onClick={ThemeChanger}
             darkMode={DarkModeValue}
@@ -268,7 +268,7 @@ const Notification = styled('div',{
           <HeadLine darkMode={DarkModeValue}>INTRODUCING</HeadLine>
           <HeadLine
             css={{
-              fontSize: "100px",
+              fontSize: "10vh",
               background:
                 "linear-gradient(90deg, #FEAC5E 0%, #C779D0 50%, #4BC0C8 100%)",
               "-webkit-background-clip": "text",
@@ -287,19 +287,20 @@ const Notification = styled('div',{
           <HeadLine
             darkMode={DarkModeValue}
             css={{
-              fontSize: "60px",
+              fontSize: "5vh",
               fontWeight: "bold",
-              marginTop: "70px",
+              marginTop: "5vh",
               width: "max-content",
               marginLeft: "auto",
               marginRight: "auto",
-              marginBottom: "70px",
+              marginBottom: "5vh",
               animation: "none",
             }}
           >
             Ready to Experience the Future ?
           </HeadLine>
           <InputTextBox
+          spellCheck={"false"}
             placeholder="INSERT YOUR NOTE HERE"
             darkMode={DarkModeValue}
             value={msgBox}
@@ -319,7 +320,7 @@ const Notification = styled('div',{
               width: "fit-content",
               marginLeft: "auto",
               marginRight: "auto",
-              marginTop: "30px",
+              marginTop: "3vh",
             }}
             darkMode={DarkModeValue}
           >
