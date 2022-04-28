@@ -41,31 +41,30 @@ function Boilerplate() {
 
 useEffect(()=>{
   
-  axios.get(`https://paperless-backend-mongo.up.railway.app/storage/${id}`,{
-    withCredentials: true
-
-  }).then(res=>{
-    setfetchingLink(true)
-    // console.log(res);1
+  // axios.get(`https://paperless-backend-mongo.up.railway.app/storage/${id}`,{
+  //   withCredentials: true
+  // }).then(res=>{
+  //   setfetchingLink(true)
+  //   // console.log(res);1
     
-    if(res.status===209){
-      setlinkValidate(true)
-      // console.log("You are not Autorised")
-    }
+  //   if(res.status===209){
+  //     setlinkValidate(true)
+  //     // console.log("You are not Autorised")
+  //   }
   
-  }).catch(err=>{if(err.response.status===404){console.log("URL IS NOT REGISTER TO DABASE"+err)};setfetchingLink(true)})
+  // }).catch(err=>{if(err.response.status===404){console.log("URL IS NOT REGISTER TO DABASE"+err)};setfetchingLink(true)})
 
 
-  // fetch(`https://paperless-backend-mongo.up.railway.app/storage/${id}`).then(res=>{
-  //     setfetchingLink(true)
-  //     // console.log(res);1
+  fetch(`https://paperless-backend-mongo.up.railway.app/storage/${id}`).then(res=>{
+      setfetchingLink(true)
+      // console.log(res);1
       
-  //     if(res.status===209){
-  //       setlinkValidate(true)
-  //       // console.log("You are not Autorised")
-  //     }
+      if(res.status===209){
+        setlinkValidate(true)
+        // console.log("You are not Autorised")
+      }
     
-  //   }).catch(err=>{if(err.response.status===404){console.log("URL IS NOT REGISTER TO DABASE"+err)};setfetchingLink(true)})
+    }).catch(err=>{if(err.response.status===404){console.log("URL IS NOT REGISTER TO DABASE"+err)};setfetchingLink(true)})
 },[])
 
   function ThemeChanger() {
