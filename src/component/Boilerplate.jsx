@@ -35,17 +35,17 @@ function Boilerplate() {
     //       window.alert("Password Didn't match")
     //     }
     //   })
+    let _data = {
+      password: PassRef.current.value,
+    }
 
     fetch(`https://paperless-backend-mongo.up.railway.app/storage/${id}`, {
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json'
       },
       credentials: true,
       method: "POST",
-      body: JSON.stringify({
-        password: PassRef.current.value,
-      }),
+      body: JSON.stringify(_data),
     })
       .then((data) => console.log("Data Recieved" + data))
       .catch((err) => {
@@ -78,7 +78,7 @@ function Boilerplate() {
     })
       .then((res) => {
         setfetchingLink(true);
-        console.log(res);
+        // console.log(res);
         if (res.status === 209) {
           setlinkValidate(true);
           console.log("Link matches but you are not authorised");
