@@ -10,9 +10,11 @@ import { Footer } from "./style/Footer";
 import { Container } from "./style/Context";
 import { styled } from "@stitches/react";
 import { InputTextBox } from "./style/InputTextBox";
+import { API_URL } from "../util/ip";
 
 
 function Boilerplate() {
+  axios.defaults.withCredentials = true;
   const [linkValidate, setlinkValidate] = useState(false);
   const [fetchingLink, setfetchingLink] = useState(false);
   const [receivedObj, setreceivedObj] = useState(false)
@@ -23,7 +25,7 @@ function Boilerplate() {
 
   function OnValidateSubmit() {
       axios
-      .post(`/Storage/${id}`,{
+      .post(`${API_URL}/Storage/${id}`,{
         password: PassRef.current.value
       },{
         withCredentials: true
@@ -68,6 +70,8 @@ function Boilerplate() {
   }
 
   useEffect(() => {
+
+    
     // axios.get(`https://paperless-backend-mongo.up.railway.app/storage/${id}`,{
     //   withCredentials: true
     // }).then(res=>{
@@ -81,11 +85,35 @@ function Boilerplate() {
 
     // }).catch(err=>{if(err.response.status===404){console.log("URL IS NOT REGISTER TO DABASE"+err)};setfetchingLink(true)})
 
-    fetch(`/Storage/${id}`, {
-      method: "GET",
-      credentials: "include",
-    })
-      .then((res) => {
+
+
+
+
+    // fetch(`${API_URL}/Storage/${id}`, {
+    //   method: "GET",
+    //   credentials: "include",
+    // })
+    //   .then((res) => {
+    //     setfetchingLink(true);
+    //     // console.log(res);
+    //     if (res.status === 209) {
+    //       setlinkValidate(true);
+    //       // console.log("Link matches but you are not authorised");
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.log(err)
+    //     if (err.response.status === 404) {
+    //       window.alert("URL IS NOT REGISTER TO DATABASE")
+    //       // console.log("URL IS NOT REGISTER TO DABASE" + err);
+    //     }
+    //     setfetchingLink(true);
+    //   });
+
+
+    
+    axios.get(`${API_URL}/Storage/${id}`)
+       .then((res) => {
         setfetchingLink(true);
         // console.log(res);
         if (res.status === 209) {
@@ -101,6 +129,12 @@ function Boilerplate() {
         }
         setfetchingLink(true);
       });
+
+
+
+
+
+
   }, []);
 
   function ThemeChanger() {
