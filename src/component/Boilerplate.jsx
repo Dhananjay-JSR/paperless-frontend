@@ -14,7 +14,7 @@ import { API_URL } from "../util/ip";
 
 
 function Boilerplate() {
-  axios.defaults.withCredentials = true;
+  
   const [linkValidate, setlinkValidate] = useState(false);
   const [fetchingLink, setfetchingLink] = useState(false);
   const [receivedObj, setreceivedObj] = useState(false)
@@ -111,7 +111,7 @@ function Boilerplate() {
     //   });
 
 
-    
+    axios.defaults.withCredentials = true;
     axios.get(`${API_URL}/Storage/${id}`)
        .then((res) => {
         setfetchingLink(true);
