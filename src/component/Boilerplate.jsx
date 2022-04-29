@@ -111,8 +111,10 @@ function Boilerplate() {
     //   });
 
 
-    axios.defaults.withCredentials = true;
-    axios.get(`${API_URL}/Storage/${id}`)
+    // axios.defaults.withCredentials = true;
+    axios.get(`${API_URL}/Storage/${id}`,{
+      withCredentials: true
+    })
        .then((res) => {
         setfetchingLink(true);
         // console.log(res);
