@@ -1,7 +1,6 @@
 {
   "name": "paperless-frontend",
   "version": "0.1.0",
-  "proxy": "https://paperless-backend-mongo.up.railway.app",
   "private": true,
   "dependencies": {
     "@stitches/react": "^1.2.8",
