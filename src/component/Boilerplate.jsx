@@ -64,6 +64,8 @@ function Boilerplate() {
         })
         .then(data => {
           console.log(data); // JSON data parsed by `data.json()` call
+        }).catch(err=>{
+          console.log(err)
         });
 
 
