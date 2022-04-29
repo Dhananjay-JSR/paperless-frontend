@@ -25,7 +25,7 @@ function Boilerplate() {
 
   function OnValidateSubmit() {
       axios
-      .get(`${API_URL}/Storage/${id}`,{     // FIX: NEED TO REMOVE THIS POST
+      .post(`${API_URL}/Storage/${id}`,{     // FIX: NEED TO REMOVE THIS POST
         password: PassRef.current.value
       },{
         withCredentials: true
