@@ -212,7 +212,7 @@ function Boilerplate() {
           as="a"
           href="https://github.com/Dhananjay-JSR/paperless-frontend"
         >
-          DS
+          Dhananjay Senday
         </TextContainer>
         With ❤
       </Footer>

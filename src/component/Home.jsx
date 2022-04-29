@@ -326,7 +326,7 @@ const Notification = styled('div',{
           href="https://github.com/Dhananjay-JSR/paperless-frontend"
         >
           {" "}
-          DS
+          Dhananjay Senday
         </TextContainer>{" "}
         With ❤
       </Footer>
