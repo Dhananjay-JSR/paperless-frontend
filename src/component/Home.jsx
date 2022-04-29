@@ -35,7 +35,7 @@ function Home() {
   function submitData() {
     setrequest_sent(!request_sent);
     // console.log(passInput.current.value);
-    // console.log(msgBox);//
+    // console.log(msgBox);
     
     let content = {
       message: msgBox,
