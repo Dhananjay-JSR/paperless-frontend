@@ -60,7 +60,7 @@ function Boilerplate() {
       }
       
       postData(`${API_URL}/Storage/${id}`,{
-          password: PassRef.current.value
+          password: 42
         })
         .then(data => {
           console.log(data); // JSON data parsed by `data.json()` call
