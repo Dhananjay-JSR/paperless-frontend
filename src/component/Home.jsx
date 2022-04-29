@@ -34,9 +34,6 @@ function Home() {
 
   function submitData() {
     setrequest_sent(!request_sent);
-    // console.log(passInput.current.value);
-    // console.log(msgBox);
-    
     let content = {
       message: msgBox,
       password: passInput.current.value,
@@ -45,7 +42,6 @@ function Home() {
       .post(`${API_URL}/Storage`, content)
       .then(function (response) {
         setreceived_data(response.data.HashedLink);
-        // console.log(response.data.HashedLink);
         setTimeout(() => {
           setnotifyTimeout(true)
         }, 3000);
@@ -55,7 +51,6 @@ function Home() {
         window.alert("Error Occured "+error)
       });
   }
-  //NOTICATION
 const revealNotification= keyframes({
   "0%":{
     transform: 'translate(0,-5vh)',
@@ -65,8 +60,6 @@ const revealNotification= keyframes({
 opacity: "100%"
 }
 })
-
-
 const Notification = styled('div',{
   position: 'fixed',
   right: '10vw',
@@ -79,7 +72,6 @@ const Notification = styled('div',{
   fontWeight: 'bold',
   textAlign: 'center',
   top: '15vh',
- 
   variants:{
     "darkmode":{
       true:{
@@ -105,9 +97,6 @@ const Notification = styled('div',{
   }
 
 })
-
-
-
   //NOTIFICATION END HERE
   //MODAL
   const revealModal = keyframes({
