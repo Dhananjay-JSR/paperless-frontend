@@ -25,15 +25,16 @@ function Boilerplate() {
 
   function OnValidateSubmit() {
       axios
-      .post(`${API_URL}/Storage/${id}`,{
+      .get(`${API_URL}/Storage/${id}`,{     // FIX: NEED TO REMOVE THIS POST
         password: PassRef.current.value
       },{
         withCredentials: true
       } )
       .then((res)=>{
-       
+        console.log(res)  // FIX: NEED TO REMOVE THIS
         setreceivedObj(res.data)
       }).catch((err)=>{
+        console.log(err)  // FIX: NEED TO REMOVE THIS
         if (err.response.status===469){
           window.alert("Token Expired Please Refresh Page")
         }else if (err.response.status===410){
