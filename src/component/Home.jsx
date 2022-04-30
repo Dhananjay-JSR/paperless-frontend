@@ -45,7 +45,7 @@ function Home() {
         setTimeout(() => {
           setnotifyTimeout(true)
         }, 3000);
-        navigator.clipboard.writeText(response.data.HashedLink);
+        navigator.clipboard.writeText(`https://paperless-frontend.vercel.app/${response.data.HashedLink}`);
       })
       .catch(function (error) {
         window.alert("Error Occured "+error)
@@ -153,7 +153,7 @@ const Notification = styled('div',{
   return (
     <>
     {received_data?  <Notification ending={notifyTimeout} darkmode={DarkModeValue}>
-      Link Added to Clipboard
+      Link Copied , Share with anyone
     </Notification> : ""}
       <Modal display={open}>
         <ModalWindow darkMode={DarkModeValue}>
