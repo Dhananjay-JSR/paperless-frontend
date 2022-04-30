@@ -127,7 +127,7 @@ const Notification = styled('div',{
   const ModalWindow = styled("div", {
     backgroundColor: "Yellow",
     height: "32vh",
-    width: "29vw",
+    width: "45vw",
     borderRadius: "2.5vh",
     position: "relative",
     display: "grid",
