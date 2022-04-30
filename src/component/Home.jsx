@@ -182,7 +182,8 @@ const Notification = styled('div',{
               }}
             >
               {received_data
-                ? received_data
+              
+                ? `https://paperless-frontend.vercel.app/${received_data}`
                 : "Waiting for Server to Respond Back"}
             </TextContainer>
           ) : (
