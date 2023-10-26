@@ -62,7 +62,7 @@ export default function RootLayout({
 
         <NavBar/>
       
-<main className=' px-5 flex-grow justify-center items-center flex'>
+<main className='z-20 px-5 flex-grow justify-center items-center flex'>
 
 
       {children}
@@ -76,6 +76,15 @@ export default function RootLayout({
           <img src='https://nextui.org/gradients/docs-right.png' draggable={false} alt='docs right background' className='relative z-10 select-none  shadow-black/5  shadow-none transition-transform-opacity motion-reduce:transition-none !duration-300 rounded-large'/>
           </div>
         </div> */}
+
+<div className='z-10 relative flex flex-col'>
+          <div className='z-10 fixed  block opacity-70 '>
+          <img src={"https://nextui.org/gradients/docs-left.png"} alt='docs left background' draggable={false} className='relative z-10  shadow-black/5  shadow-none transition-transform-opacity motion-reduce:transition-none !duration-300 rounded-large' />
+          </div>
+          <div className='fixed z-10 block opacity-70 -top-[80%] -right-[60%] 2xl:-top-[60%] 2xl:-right-[45%]  rotate-12 '>
+          <img src='https://nextui.org/gradients/docs-right.png' draggable={false} alt='docs right background' className='relative z-10  shadow-black/5  shadow-none transition-transform-opacity motion-reduce:transition-none !duration-300 rounded-large'/>
+          </div>
+        </div>
 
         <Footer/>
         </div>
