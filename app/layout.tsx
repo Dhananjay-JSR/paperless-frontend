@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import Image from 'next/image'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,7 +17,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+      {children}
+      <div className='relative flex flex-col'>
+          <div className='fixed  block opacity-70 '>
+            <img src={"https://nextui.org/gradients/docs-left.png"} alt='docs left background' className='relative z-10  shadow-black/5  shadow-none transition-transform-opacity motion-reduce:transition-none !duration-300 rounded-large' />
+          </div>
+          <div className='fixed block opacity-70 -top-[80%] -right-[60%] 2xl:-top-[60%] 2xl:-right-[45%] z-0 rotate-12'>
+            <img src='https://nextui.org/gradients/docs-right.png' alt='docs right background' className='relative z-10  shadow-black/5  shadow-none transition-transform-opacity motion-reduce:transition-none !duration-300 rounded-large'/>
+          </div>
+        </div>
+
+
+      </body>
     </html>
   )
 }
