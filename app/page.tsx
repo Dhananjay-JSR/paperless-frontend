@@ -32,9 +32,9 @@ export default function Home() {
           <br />
           Explore{" "}
           <span className="from-[#b1e1f3] to-[#2ba8fb] bg-clip-text text-transparent bg-gradient-to-b tracking-tight inline font-semibold">
-            'Kode'{" "}
+          &apos;Kode&apos;{" "}
           </span>
-          - Your Code's New Home"
+          - Your Code&apos;s New Home&apos;
         </div>
         <div className="flex w-full max-w-md justify-between mx-auto mt-16">
           <Button color="primary" href="/editor" as={Link} className="">
