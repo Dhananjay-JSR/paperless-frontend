@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 }
 
 function NavBar(){
-  return <nav className='bg-white/10 rounded-md  max-w-7xl h-12 mx-auto flex  items-center px-5'>
+  return <nav className='bg-white/10 rounded-md w-full max-w-7xl h-12 mx-auto flex  items-center px-5'>
     <div className='flex justify-between w-full'>
     <p className='text-3xl'>KODE</p>
     <div className='text-2xl flex gap-7'>
@@ -37,7 +37,7 @@ function NavBar(){
 }
 
 function Footer(){
-return <nav className='bg-white/10 rounded-md  max-w-7xl h-12 mx-auto w-full flex mt-auto justify-center  items-center px-5'>
+return <nav className='bg-white/10 rounded-md  mt-auto max-w-7xl h-12 mx-auto w-full flex  justify-center  items-center px-5'>
 Crafted with ❤️ by <Link href='http://dhananjaay.dev' color='primary' className='ml-1'>Dhananjay Senday</Link>
 </nav>
 }
@@ -49,26 +49,30 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className+" dark text-foreground bg-background  flex-col shrink-0 flex p-3 h-screen"}>
+      <body className={inter.className+" dark text-foreground bg-background   flex-shrink-0  w-full"}>
       <Providers>
+        <div className='flex flex-col min-h-screen p-4'>
+
         <NavBar/>
       
-{/* <div className='flex-grow'> */}
+<main className=' px-5'>
+
 
       {children}
-{/* </div> */}
+</main>
      
       {/* <div className='select-none relative flex flex-col'>
           <div className='select-none fixed  block opacity-70 '>
-            <img src={"https://nextui.org/gradients/docs-left.png"} alt='docs left background' draggable={false} className='relative z-10 select-none shadow-black/5  shadow-none transition-transform-opacity motion-reduce:transition-none !duration-300 rounded-large' />
+          <img src={"https://nextui.org/gradients/docs-left.png"} alt='docs left background' draggable={false} className='relative z-10 select-none shadow-black/5  shadow-none transition-transform-opacity motion-reduce:transition-none !duration-300 rounded-large' />
           </div>
           <div className='fixed block opacity-70 -top-[80%] -right-[60%] 2xl:-top-[60%] 2xl:-right-[45%] z-0 rotate-12 select-none'>
-            <img src='https://nextui.org/gradients/docs-right.png' draggable={false} alt='docs right background' className='relative z-10 select-none  shadow-black/5  shadow-none transition-transform-opacity motion-reduce:transition-none !duration-300 rounded-large'/>
+          <img src='https://nextui.org/gradients/docs-right.png' draggable={false} alt='docs right background' className='relative z-10 select-none  shadow-black/5  shadow-none transition-transform-opacity motion-reduce:transition-none !duration-300 rounded-large'/>
           </div>
         </div> */}
 
-        </Providers>
         <Footer/>
+        </div>
+        </Providers>
       </body>
     </html>
   )
