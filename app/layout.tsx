@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Image from 'next/image'
+import { Providers } from './providers'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+      <Providers>
       {children}
       <div className='relative flex flex-col'>
           <div className='fixed  block opacity-70 '>
@@ -28,7 +30,7 @@ export default function RootLayout({
           </div>
         </div>
 
-
+        </Providers>
       </body>
     </html>
   )
