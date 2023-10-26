@@ -6,6 +6,7 @@ import { Providers } from './providers'
 import { Button, Link, Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@nextui-org/react'
 import Logo from '../components/Logo.png'
 import clsx from 'clsx'
+
 // import { Image } from 'next/image'
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,21 +16,27 @@ export const metadata: Metadata = {
 }
 
 function NavBar(){
-  return <nav className='bg-white/10 rounded-md w-full max-w-7xl h-12 mx-auto flex  items-center px-5'>
+  return <nav className='bg-white/10 z-30 rounded-md w-full max-w-7xl h-12 mx-auto flex  items-center px-5'>
     <div className='flex justify-between w-full'>
-    <p className='text-3xl'>KODE</p>
+    <Button color="success" variant="light" className='text-3xl'>KODE</Button>
     <div className='text-2xl flex gap-7'>
-      <div className=''>
+      {/* <div className=''> */}
+      <Link href='/'>
         FEATURES
-      </div>
-      <div>
+      </Link>
+      {/* </div> */}
+      
+<Link href='/'>
+
         ABOUT
-      </div>
-      <div>
+</Link>
+      
+  <Link>
         DOCS
-      </div>
+  </Link>    
+      
     </div>
-    <div>
+    <div className='flex items-center'>
       <Button  color='primary' size='sm' as={Link} href='https://www.buymeacoffee.com/dhananjayjsr' className='ml-3'>Buy Me Coffee</Button>
     </div>
     </div>
@@ -37,7 +44,7 @@ function NavBar(){
 }
 
 function Footer(){
-return <nav className='bg-white/10 rounded-md  mt-auto max-w-7xl h-12 mx-auto w-full flex  justify-center  items-center px-5'>
+return <nav className='bg-white/10 z-20 rounded-md  mt-auto max-w-7xl h-12 mx-auto w-full flex  justify-center  items-center px-5'>
 Crafted with ❤️ by <Link href='http://dhananjaay.dev' color='primary' className='ml-1'>Dhananjay Senday</Link>
 </nav>
 }

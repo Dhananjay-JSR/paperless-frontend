@@ -53,6 +53,10 @@ export default function Home() {
       value: "coffeescript",
       label: "CoffeeScript",
     },
+    {
+        value : "cpp",
+        label : "C++"
+    }
   ];
 const router = useRouter()
   const diffEditorRef = useRef(null);
@@ -159,7 +163,6 @@ const router = useRouter()
                     isDisabled={isRequesting}
                       color="primary"
                       onPress={() => {
-                        
                         window.navigator.clipboard.writeText(
                             process.env.NEXT_PUBLIC_URL+"/code/"+codeOutput
                         );
@@ -176,7 +179,7 @@ const router = useRouter()
             </ModalContent>
           </Modal>
         </div>
-        <div className="max-w-7xl w-full border-2 rounded-md">
+        <div className="max-w-7xl mb-4 w-full border-2 rounded-md">
           <Editor
             beforeMount={(monaco) => {
               monaco.editor.defineTheme("onedark", {

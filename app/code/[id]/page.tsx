@@ -1,6 +1,6 @@
 "use client";
 import { Editor } from "@monaco-editor/react";
-import { Button, Skeleton, Spinner } from "@nextui-org/react";
+import { Button, Link, Skeleton, Spinner } from "@nextui-org/react";
 import axios from "axios";
 import React, { useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
@@ -59,18 +59,27 @@ export default function Page({ params }: { params: { id: string } }) {
         <Toaster />
       </div>
       <div className=" flex-grow  flex   flex-col max-w-7xl mx-auto   min-h-full">
+        <div className="flex justify-between px-5  py-2">
         <Button
           className="my-2"
           onClick={(raw) => {
-            navigator.clipboard.writeText(data.data.code);
-            toast("Code Copied to Clipboard", {
-              position: "top-right",
-            });
-          }}
-        >
+              navigator.clipboard.writeText(data.data.code);
+              toast("Code Copied to Clipboard", {
+                  position: "top-right",
+                });
+            }}
+            >
           Copy Code
         </Button>
-        <div className="max-w-7xl w-full border-2 rounded-md">
+        <Button
+          className="my-2"
+          href="/editor"
+            as={Link}
+          >
+          Create New Code Snippet
+        </Button>
+            </div>
+        <div className="max-w-7xl w-full mb-3 border-2 rounded-md">
           <Editor
             beforeMount={(monaco) => {
               monaco.editor.defineTheme("onedark", {
@@ -95,6 +104,9 @@ export default function Page({ params }: { params: { id: string } }) {
             value={data.data.code as any}
             options={{
               readOnly: true,
+              readOnlyMessage:{
+                value:" Bhai Edit Mode pe Type karke kya kar loge",
+              }
             }}
             width={"100%"}
             defaultLanguage={"javascript"}
