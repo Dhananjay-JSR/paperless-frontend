@@ -55,7 +55,7 @@ export default function RootLayout({
 
         <NavBar/>
       
-<main className=' px-5'>
+<main className=' px-5 flex-grow justify-center items-center flex'>
 
 
       {children}
