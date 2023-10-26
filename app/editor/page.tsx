@@ -164,7 +164,7 @@ const router = useRouter()
                             process.env.NEXT_PUBLIC_URL+"/code/"+codeOutput
                         );
                         onClose();
-                        // router.push("/code/"+codeOutput)
+                        router.push("/code/"+codeOutput)
                         
                       }}
                     >

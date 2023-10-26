@@ -1,6 +1,7 @@
 import { Button, Divider } from '@nextui-org/react'
 import Image from 'next/image'
 import { CheckCircledIcon } from '@radix-ui/react-icons'
+import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -16,8 +17,8 @@ Explore <span className='from-[#b1e1f3] to-[#2ba8fb] bg-clip-text text-transpare
     </div>
 <div className='flex w-full max-w-md justify-between mx-auto mt-16'>
 
-    <Button color='primary' className=''>Get Started</Button>
-    <Button color='secondary' className=''>Learn More</Button>
+    <Button color='primary' href='/editor'  as={Link} className=''>Get Started</Button>
+    <Button color='secondary' href='https://dhananjaay.dev' as={Link} >Learn More</Button>
 </div>
 <div className='mt-32 max-w-4xl mx-auto bg-white flex text-black font-semibold py-2 px-6 rounded-md justify-between '>
     <div className='flex gap-2 items-center'>
