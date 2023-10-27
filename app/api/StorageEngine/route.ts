@@ -1,6 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+import path from 'path'
+const prisma = new PrismaClient({
+    datasources:{
+        db:{
+            url: path.join(process.cwd(), 'prisma', 'dev.db')
+        }
+    }
+})
 // To handle a GET request to /api
 export async function GET(request:NextRequest) {
   // Do whatever you want
