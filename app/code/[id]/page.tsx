@@ -105,7 +105,7 @@ export default function Page({ params }: { params: { id: string } }) {
             options={{
               readOnly: true,
               readOnlyMessage:{
-                value:" Bhai Edit Mode pe Type karke kya kar loge",
+                value:" Bhai Read Only Mode pe Type karke kya kar loge",
               }
             }}
             width={"100%"}
