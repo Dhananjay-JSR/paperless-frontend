@@ -6,14 +6,15 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
+   directUrl = env("DIRECT_URL")
 }
 
 model StorageEngine {
   id Int @id @default(autoincrement())
   code String 
   languageType String 
-  url String
+  url String 
   password String?
 }
