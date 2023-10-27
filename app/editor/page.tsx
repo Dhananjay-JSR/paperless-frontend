@@ -118,7 +118,9 @@ const router = useRouter()
                 let JSONDATA = Data.data
                 // console.log(JSONDATA.URL)
                 setCodeOutput((prev:any)=>JSONDATA.URL)
-                toast("Click Copy to copy the link")
+                toast("Click Copy to copy the link",{
+                    position: "bottom-right"
+                })
                 setIsRequesting(false)
                 onOpen()
             }
@@ -150,7 +152,7 @@ const router = useRouter()
               {(onClose) => (
                 <>
                   <ModalHeader className="flex flex-col gap-1 px-5">
-                    {isRequesting ? "Creating Link" : "Link Created..  "+process.env.NEXT_PUBLIC_URL+"/code/"+codeOutput}
+                    {isRequesting ? "Creating Link" : "Link Created..  "+   "https://kode.dhananjaay.dev"+"/code/"+codeOutput}
                   </ModalHeader>
                   <ModalBody>
                     {isRequesting ? <Spinner/> : "Link Created"}
@@ -164,7 +166,7 @@ const router = useRouter()
                       color="primary"
                       onPress={() => {
                         window.navigator.clipboard.writeText(
-                            process.env.NEXT_PUBLIC_URL+"/code/"+codeOutput
+                            "https://kode.dhananjaay.dev"+"/code/"+codeOutput
                         );
                         onClose();
                         router.push("/code/"+codeOutput)
