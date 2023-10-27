@@ -20,7 +20,7 @@ export default function Page({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     axios
-      .get(process.env.NEXT_PUBLIC_URL + "/api/StorageEngine?id=" + params.id)
+      .get(process.env.NEXT_PUBLIC_URL + "/api?id=" + params.id)
       .then((res) => {
         let data = res.data;
         setData((prev: any) => data);
