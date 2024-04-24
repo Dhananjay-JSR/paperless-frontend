@@ -6,10 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "server": "tsx server/index.ts",
-    "star": "concurrently \"npm run server\" \"npm run dev\" \"npm run websoc\"",
-    "websoc": "cross-env HOST=localhost PORT=1234 y-websocket"
+    "lint": "next lint"
   },
   "dependencies": {
     "@monaco-editor/react": "^4.6.0",
