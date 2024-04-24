@@ -96,7 +96,11 @@ export default function Collaborate({ params }: { params: { slug: string } }) {
     return new Y.Doc();
   }, []);
   const provider = useMemo(() => {
-    return new WebsocketProvider("ws://localhost:1234", params.slug, yDOcument);
+    return new WebsocketProvider(
+      "ws://websock-kode.dhananjaay.dev",
+      params.slug,
+      yDOcument
+    );
   }, []);
   const type = yDOcument.getText("monaco");
   const RoomConfig = yDOcument.getMap("roomConfig");
@@ -377,7 +381,7 @@ export default function Collaborate({ params }: { params: { slug: string } }) {
               <div>
                 <div>ROOM ID (click to copy)</div>
                 <Snippet size="lg" className="mx-auto">
-                  {`http://localhost:3000/collaborate/${params.slug}`}
+                  {`https://kode.dhananjaay.dev/collaborate/${params.slug}`}
                 </Snippet>
               </div>
             )}
