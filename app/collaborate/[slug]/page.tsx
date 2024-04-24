@@ -97,7 +97,7 @@ export default function Collaborate({ params }: { params: { slug: string } }) {
   }, []);
   const provider = useMemo(() => {
     return new WebsocketProvider(
-      "ws://websock-kode.dhananjaay.dev",
+      "wss://websock-kode.dhananjaay.dev",
       params.slug,
       yDOcument
     );
